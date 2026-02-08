@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #ffffff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 360px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f4f4f4;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #000;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            background: #fff;
+            outline: 2px solid #000;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.1s, background-color 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #333;
+            transform: scale(1.02);
+        }
+
+        .error {
+            color: #000;
+            background: #ffe6e6;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #ffcccc;
+        }
+
+        a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-top: 20px;
+            display: inline-block;
+            border-bottom: 1px solid transparent;
+        }
+
+        a:hover {
+            color: #000;
+            border-bottom: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Login</h2>
+    <p>Bienvenido de vuelta</p>
+
+    <div th:if="${param.error}" class="error">
+        Credenciales incorrectas. Intenta nuevamente.
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <input type="text" name="username" placeholder="Usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <a href="/registro">Crear una cuenta</a>
+</div>
+
+</body>
+</html>

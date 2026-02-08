@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 360px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        h2 {
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #f4f4f4;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            background: #fff;
+            outline: 2px solid #000;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            display: block;
+        }
+
+        a:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Editar Corrida</h2>
+
+    <form th:action="@{/guardar}" th:object="${sesion}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label style="display:block; text-align:left; font-size:0.8rem; margin-bottom:5px;">Fecha:</label>
+        <input type="date" th:field="*{fecha}" required>
+
+        <input type="number" step="0.01" th:field="*{distancia}" placeholder="Distancia (KM)" required>
+
+        <input type="text" th:field="*{tiempo}" placeholder="Tiempo (Ej: 45 min)" required>
+
+        <input type="text" th:field="*{descripcion}" placeholder="Comentario o nota">
+
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <a href="/">Cancelar</a>
+</div>
+
+</body>
+</html>

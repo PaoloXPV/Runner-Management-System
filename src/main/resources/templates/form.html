@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva sesión</title>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fafafa;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #fff;
+            width: 90%;
+            max-width: 400px;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            margin: 0 0 25px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #000;
+            background: #fff;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        .cancelar {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #999;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .cancelar:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Registrar run</h2>
+
+    <form th:action="@{/guardar}" th:object="${sesion}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label>Fecha</label>
+        <input type="date" th:field="*{fecha}" required>
+
+        <label>Distancia (km)</label>
+        <input type="number" step="0.01" th:field="*{distancia}" placeholder="0.00" required>
+
+        <label>Tiempo</label>
+        <input type="text" th:field="*{tiempo}" placeholder="Ej: 45 min">
+
+        <label>Notas</label>
+        <textarea th:field="*{descripcion}" rows="3" placeholder="¿Cómo estuvo el ritmo?"></textarea>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <a href="/" class="cancelar">Cancelar</a>
+</div>
+
+</body>
+</html>
